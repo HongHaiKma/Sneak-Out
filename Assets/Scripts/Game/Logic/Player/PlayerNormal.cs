@@ -52,6 +52,7 @@ namespace Game
 
         void IStateMachine.OnUpdate()
         {
+
         }
 
         void IStateMachine.OnStop()

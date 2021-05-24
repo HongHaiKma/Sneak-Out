@@ -1,5 +1,6 @@
 using PFramework;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Game
 {
@@ -12,6 +13,8 @@ namespace Game
             Captured,
             Victory,
         }
+
+        public EnemyScript m_EnemyScript;
 
         CharacterMovement _characterMovement;
         RagdollScript _ragdollScript;
@@ -52,6 +55,47 @@ namespace Game
         void Update()
         {
             _stateMachine.Update();
+
+            Collider[] cols = Physics.OverlapSphere(Position, 6f);
+            List<EnemyScript> enemies = new List<EnemyScript>();
+            for (int i = 0; i < cols.Length; i++)
+            {
+                EnemyScript enemyScript = cols[i].GetComponent<EnemyScript>();
+                if (enemyScript != null)
+                {
+                    enemies.Add(enemyScript);
+                }
+            }
+
+            if (enemies.Count == 1)
+            {
+                m_EnemyScript = enemies[0];
+            }
+            else if (enemies.Count > 1)
+            {
+                float distance = 10000000f;
+                for (int i = 0; i < enemies.Count; i++)
+                {
+                    if (Helper.CalDistance(Position, enemies[i].transform.position) < distance)
+                    {
+                        distance = Helper.CalDistance(Position, enemies[i].transform.position);
+                        m_EnemyScript = enemies[i];
+                    }
+                }
+            }
+
+            if (m_EnemyScript != null)
+            {
+                if (Helper.InRange(Position, m_EnemyScript.transform.position, 1.5f))
+                {
+
+                }
+            }
+        }
+
+        void OnDrawGizmos()
+        {
+            Gizmos.DrawWireSphere(Position, 6f);
         }
 
         void OnTriggerEnter(Collider other)

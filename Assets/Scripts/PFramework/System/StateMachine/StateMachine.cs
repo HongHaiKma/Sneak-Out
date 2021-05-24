@@ -27,7 +27,7 @@ namespace PFramework
     /// 		</item>
     /// 		<item>
     /// 			<description>Set the CurrentState property on the state machine to transition.
-    /// (You can either set it from one of the state delegates, or from anywhere else.
+    /// (You can either set itï¿½from one of the state delegates, or from anywhere else.
     /// </description>
     /// 		</item>
     /// 	</list>
