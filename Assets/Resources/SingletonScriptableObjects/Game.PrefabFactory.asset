@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28311e6319eb918449450f49277e4d46, type: 3}
+  m_Name: Game.PrefabFactory
+  m_EditorClassIdentifier: 
+  _objLevels:
+  - {fileID: 7000705759157467624, guid: 6ee869b7e59e35e488192fb48149a8d2, type: 3}
+  - {fileID: 7000705759157467624, guid: 3806d5c9732974a49a12fffdfd9fbc72, type: 3}
+  - {fileID: 7000705759157467624, guid: f97ae8e65bd68fe419edc12139ecc33b, type: 3}
+  - {fileID: 7000705759157467624, guid: 47d07ec19ddc66848bee5480514b552e, type: 3}
+  - {fileID: 7000705759157467624, guid: 387b2f57bd1bddd499780c0afb11f533, type: 3}
+  - {fileID: 7000705759157467624, guid: 9a84049cb10ca4a409756af586348ccc, type: 3}
+  - {fileID: 7000705759157467624, guid: 21c2fdd181d13e041b9820d0ad4b41d5, type: 3}
+  - {fileID: 7000705759157467624, guid: ad7934da513b7f64b887550ffce2b545, type: 3}
+  - {fileID: 7000705759157467624, guid: b9cad8163bcd03846832b4456949ba2d, type: 3}
+  - {fileID: 7000705759157467624, guid: b29fcf5d2a1740e41b2cdd806bc45d8a, type: 3}
+  - {fileID: 7000705759157467624, guid: d2263f4eb4aa16f4fb1c1d9dea6ccd69, type: 3}
+  - {fileID: 7000705759157467624, guid: a82eb54fa11950f4e962d5a339119141, type: 3}
+  - {fileID: 7000705759157467624, guid: 29fda657bb8b44c38814494e0ddbb9c0, type: 3}
+  - {fileID: 7000705759157467624, guid: 409f19b8ebcfa9641b74be6ed454f663, type: 3}
+  - {fileID: 7000705759157467624, guid: 240ba04054804f949ac239dbbc79d308, type: 3}
+  - {fileID: 7000705759157467624, guid: 5ec9e587340e19f419122202b3bf6598, type: 3}
+  - {fileID: 7000705759157467624, guid: ea5d7b4c21d944b86a016fbcbbabc6d4, type: 3}
+  - {fileID: 7000705759157467624, guid: afd2dee9da0ca9a428a5359afe95f351, type: 3}
+  - {fileID: 7000705759157467624, guid: 65be70566796d4779a29be00474f8a3f, type: 3}
+  - {fileID: 7000705759157467624, guid: 0b7995cfc64fea348bf35be7c45ab8eb, type: 3}
+  - {fileID: 7000705759157467624, guid: ce4b352dfd46adb42a49beea76feba92, type: 3}
+  - {fileID: 7000705759157467624, guid: 2c4e4cba972448046bc403a342847e2f, type: 3}
+  - {fileID: 7000705759157467624, guid: 625a463ffa1a4564e8427c8b5396fef6, type: 3}
+  - {fileID: 7000705759157467624, guid: e65f0c9f81bd42f46a9bce325c81d851, type: 3}
+  - {fileID: 7000705759157467624, guid: ce8c53d3696099944bd8243705d11a41, type: 3}
+  - {fileID: 7000705759157467624, guid: 5a9e60bb4bd33422d8c187d43d88cf72, type: 3}
+  - {fileID: 7000705759157467624, guid: 305881ee3271880498b411b2e627380e, type: 3}
+  - {fileID: 7000705759157467624, guid: 48789b7f0d01a4e95806380684736f71, type: 3}
+  - {fileID: 7000705759157467624, guid: 6f35f0796e5604429875b749fa30709e, type: 3}
+  _objDoorJumpTips: {fileID: 1788749500194866360, guid: 0e5056550b53fcf438dfd1d4940b581b,
+    type: 3}
+  _fxSleep: {fileID: 8563204809018431410, guid: 4980a302d6eb27241a42ad611b515d54,
+    type: 3}
+  _fxOpenChest: {fileID: 2687550747434371502, guid: 0e7ca02369b234a49bceee2a9ccae015,
+    type: 3}
+  _fxBushEnter: {fileID: 8585171420849717601, guid: d87a33817a9f85d49830e9861b0f2b17,
+    type: 3}
+  _fxRingNoise: {fileID: 838645674838288626, guid: e47e467b72613654cb8e860488800bc4,
+    type: 3}
+  _fxSmoke: {fileID: 1550917558053079871, guid: fb416971103b71642a4a83d6fd553710,
+    type: 3}
+  _fxIce: {fileID: 4290006502055714189, guid: 8569a265bef44824da12f9040572e40e, type: 3}
+  _popupLose: {fileID: 1195726799531195747, guid: 0e4f528991ea96c49bed91859d817323,
+    type: 3}
+  _popupWin: {fileID: 3349158311752038411, guid: 037d3d0aa6f96cb468604326d6f7f9fa,
+    type: 3}
+  _popupPause: {fileID: 9054625432907117860, guid: b4bd423d2ed695e419c60e27907d9500,
+    type: 3}
+  _popupMessage: {fileID: 2422496374487361197, guid: 91b271dcae61796498b88a1bf8c6c2bb,
+    type: 3}
+  _popupTutorial: {fileID: 1020777033059111256, guid: c5aa9b52145194f8ca33caf02e031f2c,
+    type: 3}
+  _popupRating: {fileID: 2422496374487361197, guid: 2220d5f9c818d41c895fdff9ffa07a02,
+    type: 3}

@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0699777534e30442685725b5015ff779, type: 3}
+  m_Name: Game.AudioFactory
+  m_EditorClassIdentifier: 
+  _bgmMain:
+    _clip: {fileID: 8300000, guid: c0ee0101a0fd04dd3a7994d4ba40951f, type: 3}
+    _type: 1
+    _volumeScale: 0.7
+  _sfxAlarm:
+    _clip: {fileID: 8300000, guid: ec9f952bd04cc4fb0a176929ce96d101, type: 3}
+    _type: 0
+    _volumeScale: 1
+  _sfxBush:
+    _clip: {fileID: 8300000, guid: a4fda2f73f57c474a81412a2c39f9372, type: 3}
+    _type: 0
+    _volumeScale: 1
+  _sfxDoorOpen:
+    _clip: {fileID: 8300000, guid: bb22c76ff832642079b8f8ab4e98f368, type: 3}
+    _type: 0
+    _volumeScale: 1
+  _sfxJump:
+    _clip: {fileID: 8300000, guid: f139af15a628d4131b5b014f0f724dc5, type: 3}
+    _type: 0
+    _volumeScale: 1
+  _sfxSuspect:
+    _clip: {fileID: 8300000, guid: 0e99287e54a984c82b67b6c2388a8420, type: 3}
+    _type: 0
+    _volumeScale: 1
+  _sfxDetected:
+    _clip: {fileID: 8300000, guid: 13bff11cca54d4767be775885e25d858, type: 3}
+    _type: 0
+    _volumeScale: 1
+  _sfxFootStep:
+    _clip: {fileID: 8300000, guid: 10441bd9f17124fb798fc2b57d4009dd, type: 3}
+    _type: 0
+    _volumeScale: 1
+  _sfxSuccess:
+    _clip: {fileID: 8300000, guid: ed3960f463c6c43c0bdc0e812b4521bc, type: 3}
+    _type: 0
+    _volumeScale: 1

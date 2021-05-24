@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "238511651147",
+    "project_id": "sneak-man-3d",
+    "storage_bucket": "sneak-man-3d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238511651147:android:942151ce9f9c9adb1390ce",
+        "android_client_info": {
+          "package_name": "com.kiodra.sneakman3d"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "238511651147-np9i53qju4fhj6rg3pidu60nl90frnhs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD60HzlIBEFF3fE3qxFQdNF8hiHs_c3qxs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "238511651147-np9i53qju4fhj6rg3pidu60nl90frnhs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
