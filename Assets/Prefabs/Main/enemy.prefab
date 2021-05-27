@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 7230447167741090699}
   - component: {fileID: 2777101582191168727}
   - component: {fileID: 7717950690401076419}
+  - component: {fileID: 3161950274438165637}
   - component: {fileID: 7717375678888471528}
   m_Layer: 0
   m_Name: enemy
@@ -382,6 +383,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a871d228372b8cf43a1faeea369a0820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3161950274438165637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3768479653788983888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29adbefe4490344dbe753eec6083e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stopDuration: 0
+  m_EnemyDieTime: 0
+  m_EnemyDieTimeMax: 0
 --- !u!65 &7717375678888471528
 BoxCollider:
   m_ObjectHideFlags: 0

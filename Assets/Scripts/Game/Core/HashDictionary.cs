@@ -14,5 +14,6 @@ namespace Game
         public static readonly int Awake = Animator.StringToHash("awake");
         public static readonly int Jump = Animator.StringToHash("jump");
         public static readonly int Victory = Animator.StringToHash("victory");
+        public static readonly int Die = Animator.StringToHash("die");
     }
 }

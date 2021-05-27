@@ -7,11 +7,11 @@ using Sirenix.OdinInspector;
 namespace Game
 {
     [SelectionBase]
-    public class EnemyScript : MonoBehaviour
+    public class EnemyScript : CacheMonoBehaviour
     {
         static int Order = 0;
 
-        enum State
+        public enum State
         {
             Idle,
             Sleep,
@@ -21,6 +21,7 @@ namespace Game
             Chase,
             Capture,
             Freeze,
+            Down,
         }
 
         [System.Serializable]
@@ -39,11 +40,19 @@ namespace Game
         [ShowIf("@_behaviour==Behaviour.Patrol")]
         [SerializeField] bool _patrolLoopRestart;
 
+        public State m_State;
         StateMachine<State> _stateMachine;
         EnemyDetector _enemyDetector;
         EnemyReaction _enemyReaction;
         EnemyInvestigate _enemyInvestigate;
         EnemySleep _enemySleep;
+
+        #region PHANTOM
+
+        EnemyDown _enemyDown;
+
+        #endregion
+
 
         public Behaviour EnemyBehaviour { get { return _behaviour; } }
         public List<EnemyPatrol.Node> PatrolNodes { get { return _patrolNodes; } }
@@ -63,6 +72,8 @@ namespace Game
             EnemyPatrol enemyPatrol = GetComponent<EnemyPatrol>();
             EnemyFreeze enemyFreeze = GetComponent<EnemyFreeze>();
 
+            _enemyDown = GetComponent<EnemyDown>();
+
             // Subscribe event from enemy detector
             _enemyDetector.OnPlayerNoiseDetected += EnemyDetector_OnPlayerNoiseDetected;
             _enemyDetector.OnPlayerSeen += EnemyDetector_OnPlayerSeen;
@@ -81,6 +92,8 @@ namespace Game
             enemyChase.OnLostTrack += EnemyChase_OnLostTrack;
             enemyFreeze.OnEnd += EnemyFreeze_OnEnd;
 
+            _enemyDown.OnComplete += EnemyDown_OnComplete;
+
             _stateMachine = new StateMachine<State>();
             _stateMachine.AddState(State.Idle, enemyIdle);
             _stateMachine.AddState(State.Chase, enemyChase);
@@ -90,6 +103,7 @@ namespace Game
             _stateMachine.AddState(State.Reaction, _enemyReaction);
             _stateMachine.AddState(State.Investigate, _enemyInvestigate);
             _stateMachine.AddState(State.Freeze, enemyFreeze);
+            _stateMachine.AddState(State.Down, _enemyDown);
 
             _stateMachine.OnStateChanged += StateMachine_OnStateChanged;
         }
@@ -114,6 +128,7 @@ namespace Game
         void Update()
         {
             _stateMachine.Update();
+            m_State = _stateMachine.CurrentState;
         }
 
         #endregion
@@ -121,6 +136,37 @@ namespace Game
         void EnemyInvestigate_OnComplete()
         {
             BackToOriginalState();
+        }
+
+        void EnemyDown_OnComplete()
+        {
+            Destroy(gameObject);
+        }
+
+        public bool IsDown()
+        {
+            if (_stateMachine.CurrentState == State.Down)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool IsChase()
+        {
+            if (_stateMachine.CurrentState == State.Chase || _stateMachine.CurrentState == State.Capture || _stateMachine.CurrentState == State.Investigate)
+            // if (_stateMachine.CurrentState == State.Chase)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public void EnemyDown_OnDown()
+        {
+            _stateMachine.CurrentState = State.Down;
         }
 
         void EnemyChase_OnLostTrack()
@@ -141,6 +187,10 @@ namespace Game
                     if (_stateMachine.CurrentState != State.Reaction)
                         _stateMachine.CurrentState = State.Reaction;
                     break;
+                    // case State.Down:
+                    //     _enemyDetector.SetEnabled(false);
+                    //     _enemyDetector.SetSeeEnabled(false);
+                    //     break;
             }
         }
 
@@ -161,6 +211,10 @@ namespace Game
                 case State.Sleep:
                     _enemySleep.WakeUp();
                     break;
+                    // case State.Down:
+                    //     _enemyDetector.SetEnabled(false);
+                    //     _enemyDetector.SetSeeEnabled(false);
+                    // break;
             }
         }
 
@@ -171,6 +225,10 @@ namespace Game
                 case State.Sleep:
                 case State.Capture:
                     break;
+                // case State.Down:
+                //     _enemyDetector.SetEnabled(false);
+                //     _enemyDetector.SetSeeEnabled(false);
+                //     break;
                 default:
                     _stateMachine.CurrentState = State.Capture;
                     break;
@@ -215,6 +273,10 @@ namespace Game
                     _enemyDetector.SetEnabled(true);
                     _enemyDetector.SetSeeEnabled(true);
                     break;
+                // case State.Down:
+                //     _enemyDetector.SetEnabled(false);
+                //     _enemyDetector.SetSeeEnabled(false);
+                //     break;
                 default:
                     _enemyDetector.SetEnabled(false);
                     _enemyDetector.SetSeeEnabled(false);
@@ -244,7 +306,6 @@ namespace Game
 
                 PrefabFactory.FxSmoke.CreateRelative(transform.position);
             }
-
         }
 
         void GameEvent_ItemIce()

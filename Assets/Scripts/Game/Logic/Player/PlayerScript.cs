@@ -1,6 +1,7 @@
 using PFramework;
 using UnityEngine;
 using System.Collections.Generic;
+using DG.Tweening;
 
 namespace Game
 {
@@ -56,6 +57,45 @@ namespace Game
         {
             _stateMachine.Update();
 
+            // Collider[] cols = Physics.OverlapSphere(Position, 6f);
+            // List<EnemyScript> enemies = new List<EnemyScript>();
+            // for (int i = 0; i < cols.Length; i++)
+            // {
+            //     EnemyScript enemyScript = cols[i].GetComponent<EnemyScript>();
+            //     if (enemyScript != null)
+            //     {
+            //         enemies.Add(enemyScript);
+            //     }
+            // }
+
+            // if (enemies.Count == 1)
+            // {
+            //     m_EnemyScript = enemies[0];
+            // }
+            // else if (enemies.Count > 1)
+            // {
+            //     float distance = 10000000f;
+            //     for (int i = 0; i < enemies.Count; i++)
+            //     {
+            //         if (Helper.CalDistance(Position, enemies[i].transform.position) < distance)
+            //         {
+            //             distance = Helper.CalDistance(Position, enemies[i].transform.position);
+            //             m_EnemyScript = enemies[i];
+            //         }
+            //     }
+            // }
+
+            // if (m_EnemyScript != null)
+            // {
+            //     if (Helper.InRange(Position, m_EnemyScript.transform.position, 2.5f))
+            //     {
+            //         m_EnemyScript.EnemyDown_OnDown();
+            //     }
+            // }
+        }
+
+        public bool IsGoodToKillEnemy()
+        {
             Collider[] cols = Physics.OverlapSphere(Position, 6f);
             List<EnemyScript> enemies = new List<EnemyScript>();
             for (int i = 0; i < cols.Length; i++)
@@ -86,11 +126,40 @@ namespace Game
 
             if (m_EnemyScript != null)
             {
-                if (Helper.InRange(Position, m_EnemyScript.transform.position, 1.5f))
+                if (m_EnemyScript.IsDown() || m_EnemyScript.IsChase())
                 {
-
+                    m_EnemyScript = null;
+                    return false;
+                }
+                else
+                {
+                    if (Helper.InRange(Position, m_EnemyScript.transform.position, 4.5f))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void KillEnemy()
+        {
+            _characterMovement.SetEnabled(false);
+            m_EnemyScript.EnemyDown_OnDown();
+            CacheTransform.DOMove(m_EnemyScript.Position, 0.25f).OnComplete
+            (
+                () =>
+                {
+                    _characterMovement.SetEnabled(true);
+                }
+            );
         }
 
         void OnDrawGizmos()

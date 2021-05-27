@@ -20,6 +20,11 @@ namespace Game
 
         #region Public
 
+        public Animator GetAnimator()
+        {
+            return _animator;
+        }
+
         public void SetVisible(bool enabled)
         {
             _animator.gameObject.SetActive(enabled);
@@ -87,7 +92,7 @@ namespace Game
             _animator.SetFloat(HashDictionary.Speed, speed);
         }
 
-        void SetTrigger(int triggerID)
+        public void SetTrigger(int triggerID)
         {
             if (_lastTriggerID != 0)
                 _animator.ResetTrigger(_lastTriggerID);
