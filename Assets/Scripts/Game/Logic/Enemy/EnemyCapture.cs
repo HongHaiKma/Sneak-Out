@@ -20,6 +20,10 @@ namespace Game
         {
             CacheTransform.forward = PlayerScript.Instance.Position - CacheTransform.position;
 
+            PlayerScript.Instance.CacheTransform.LookAt(CacheTransform.position);
+
+            // _characterScript.gameObject.GetComponent<Tran>
+
             _characterScript.PlayCapture();
 
             PlayerScript.Instance.Capture(CacheTransform.position);

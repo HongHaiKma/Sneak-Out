@@ -128,7 +128,7 @@ namespace Game
         void Update()
         {
             _stateMachine.Update();
-            m_State = _stateMachine.CurrentState;
+            // m_State = _stateMachine.CurrentState;
         }
 
         #endregion
@@ -143,20 +143,9 @@ namespace Game
             Destroy(gameObject);
         }
 
-        public bool IsDown()
+        public bool IsCannotDown()
         {
-            if (_stateMachine.CurrentState == State.Down)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        public bool IsChase()
-        {
-            if (_stateMachine.CurrentState == State.Chase || _stateMachine.CurrentState == State.Capture || _stateMachine.CurrentState == State.Investigate)
-            // if (_stateMachine.CurrentState == State.Chase)
+            if (_stateMachine.CurrentState == State.Down || _stateMachine.CurrentState == State.Chase || _stateMachine.CurrentState == State.Capture || _stateMachine.CurrentState == State.Investigate)
             {
                 return true;
             }

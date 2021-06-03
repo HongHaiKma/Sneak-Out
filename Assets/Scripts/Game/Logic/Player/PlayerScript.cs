@@ -13,14 +13,17 @@ namespace Game
             JumpDoor,
             Captured,
             Victory,
+            Attack,
         }
 
         public EnemyScript m_EnemyScript;
 
         CharacterMovement _characterMovement;
-        RagdollScript _ragdollScript;
+        // RagdollScript _ragdollScript;
         PlayerJumpDoor _playerJumpDoor;
         PlayerCaptured _playerCaptured;
+
+        PlayerAttack _playerAttack;
 
         StateMachine<State> _stateMachine;
 
@@ -32,14 +35,17 @@ namespace Game
         {
             base.Awake();
 
-            _ragdollScript = GetComponent<RagdollScript>();
+            // _ragdollScript = GetComponent<RagdollScript>();
             _characterMovement = GetComponent<CharacterMovement>();
             _playerJumpDoor = GetComponent<PlayerJumpDoor>();
             _playerCaptured = GetComponent<PlayerCaptured>();
 
+            _playerAttack = GetComponent<PlayerAttack>();
+
+
             _playerJumpDoor.OnJumpOutComplete += PlayerJumpDoor_OnJumpOutComplete;
 
-            _ragdollScript.SetEnabled(false);
+            // _ragdollScript.SetEnabled(false);
         }
 
         void Start()
@@ -49,6 +55,8 @@ namespace Game
             _stateMachine.AddState(State.JumpDoor, _playerJumpDoor);
             _stateMachine.AddState(State.Captured, _playerCaptured);
             _stateMachine.AddState(State.Victory, GetComponent<PlayerVictory>());
+
+            _stateMachine.AddState(State.Attack, _playerAttack);
 
             _stateMachine.CurrentState = State.Normal;
         }
@@ -126,7 +134,7 @@ namespace Game
 
             if (m_EnemyScript != null)
             {
-                if (m_EnemyScript.IsDown() || m_EnemyScript.IsChase())
+                if (m_EnemyScript.IsCannotDown())
                 {
                     m_EnemyScript = null;
                     return false;
@@ -153,11 +161,12 @@ namespace Game
         {
             _characterMovement.SetEnabled(false);
             m_EnemyScript.EnemyDown_OnDown();
-            CacheTransform.DOMove(m_EnemyScript.Position, 0.25f).OnComplete
+            CacheTransform.DOMove(m_EnemyScript.Position, 0.3f).OnComplete
             (
                 () =>
                 {
                     _characterMovement.SetEnabled(true);
+                    _stateMachine.CurrentState = State.Normal;
                 }
             );
         }
@@ -190,6 +199,11 @@ namespace Game
         }
 
         #endregion
+
+        public void AttackEnemy()
+        {
+            _stateMachine.CurrentState = State.Attack;
+        }
 
         public void GoalReached()
         {

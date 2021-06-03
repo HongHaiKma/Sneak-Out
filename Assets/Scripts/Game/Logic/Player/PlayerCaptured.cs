@@ -7,7 +7,7 @@ namespace Game
     {
         CharacterMovement _characterMovement;
         CharacterRenderer _characterRenderer;
-        RagdollScript _ragdollScript;
+        // RagdollScript _ragdollScript;
 
         Vector3 _pushPosition;
 
@@ -15,27 +15,34 @@ namespace Game
         {
             _characterMovement = GetComponent<CharacterMovement>();
             _characterRenderer = GetComponent<CharacterRenderer>();
-            _ragdollScript = GetComponent<RagdollScript>();
+            // _ragdollScript = GetComponent<RagdollScript>();
         }
 
         public void Construct(Vector3 pushPosition)
         {
             _pushPosition = pushPosition;
+            // _characterRenderer.SetTrigger(HashDictionary.Die);
         }
 
         #region IStateMachine
 
         void IStateMachine.Init()
         {
+            // _characterRenderer.SetTrigger(HashDictionary.Die);
         }
 
         void IStateMachine.OnStart()
         {
+            _characterRenderer.SetTrigger(HashDictionary.Die);
             _characterMovement.SetEnabled(false);
-            _characterRenderer.SetEnabled(false);
-            _ragdollScript.SetEnabled(true);
+            // _characterRenderer.SetEnabled(false);
+            // _ragdollScript.SetEnabled(true);
 
-            _ragdollScript.AddForceCenter((CacheTransform.position - _pushPosition).normalized * 10000f, _pushPosition);
+            // _ragdollScript.AddForceCenter((CacheTransform.position - _pushPosition).normalized * 10000f, _pushPosition);
+            // _ragdollScript.GetComponent<Rigidbody>().AddForce((CacheTransform.position - _pushPosition).normalized * 10000f, ForceMode.Impulse);
+            GetComponent<Rigidbody>().AddForce((CacheTransform.position - _pushPosition).normalized * 10000f, ForceMode.Impulse);
+
+            Helper.DebugLog("Player caupterd!!!!!!!!!!!!!!!");
         }
 
         void IStateMachine.OnStop()

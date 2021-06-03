@@ -2,6 +2,8 @@
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
+using UnityEditor;
 
 namespace PFramework
 {
@@ -49,7 +51,26 @@ namespace PFramework
             DontDestroyOnLoad(gameObject);
 
             SceneManager.activeSceneChanged += SceneManager_ActiveSceneChanged;
+
+            // SetJavaHome();
         }
+
+        // [InitializeOnLoadMethod]
+        // static void SetJavaHome()
+        // {
+        //     //Debug.Log(EditorApplication.applicationPath);
+
+        //     Debug.Log("JAVA_HOME in editor was: " + Environment.GetEnvironmentVariable("JAVA_HOME"));
+
+        //     string newJDKPath = EditorApplication.applicationPath.Replace("Unity.app", "PlaybackEngines/AndroidPlayer/OpenJDK");
+
+        //     if (Environment.GetEnvironmentVariable("JAVA_HOME") != newJDKPath)
+        //     {
+        //         Environment.SetEnvironmentVariable("JAVA_HOME", newJDKPath);
+        //     }
+
+        //     Debug.Log("JAVA_HOME in editor set to: " + Environment.GetEnvironmentVariable("JAVA_HOME"));
+        // }
 
         void OnApplicationPause(bool pause)
         {

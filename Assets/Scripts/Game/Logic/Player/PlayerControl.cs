@@ -50,6 +50,7 @@ namespace Game
             if (m_PlayerScript.IsGoodToKillEnemy())
             {
                 m_PlayerScript.KillEnemy();
+                m_PlayerScript.AttackEnemy();
             }
         }
 
