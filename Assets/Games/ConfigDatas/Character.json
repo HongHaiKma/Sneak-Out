@@ -1,74 +1,58 @@
 [
     {
-        "ID": "1",
-        "Name": "White Man",
-        "RunSpeed": "0",
-        "Price": "500",
-        "AdsCheck": "0",
-        "AdsNumber": "0"
-    },
-    {
-        "ID": "2",
+        "ID": 1,
         "Name": "Agent 47",
-        "RunSpeed": "0",
-        "Price": "500",
-        "AdsCheck": "0",
-        "AdsNumber": "0"
+        "Price": 500,
+        "AdsCheck": 0,
+        "AdsNumber": 0
     },
     {
-        "ID": "3",
+        "ID": 2,
         "Name": "Astronaus",
-        "RunSpeed": "0",
-        "Price": "500",
-        "AdsCheck": "0",
-        "AdsNumber": "0"
+        "Price": 500,
+        "AdsCheck": 0,
+        "AdsNumber": 0
     },
     {
-        "ID": "4",
+        "ID": 3,
         "Name": "Black Ninja",
-        "RunSpeed": "0",
-        "Price": "1000",
-        "AdsCheck": "0",
-        "AdsNumber": "0"
+        "Price": 1000,
+        "AdsCheck": 0,
+        "AdsNumber": 0
     },
     {
-        "ID": "5",
+        "ID": 4,
         "Name": "Captain",
-        "RunSpeed": "0",
-        "Price": "1500",
-        "AdsCheck": "0",
-        "AdsNumber": "0"
+        "Price": 1500,
+        "AdsCheck": 0,
+        "AdsNumber": 0
     },
     {
-        "ID": "6",
+        "ID": 5,
         "Name": "Flash",
-        "RunSpeed": "0",
-        "Price": "0",
-        "AdsCheck": "1",
-        "AdsNumber": "1"
+        "Price": 0,
+        "AdsCheck": 1,
+        "AdsNumber": 1
     },
     {
-        "ID": "7",
+        "ID": 6,
         "Name": "Green Ninja",
-        "RunSpeed": "0",
-        "Price": "1500",
-        "AdsCheck": "0",
-        "AdsNumber": "0"
+        "Price": 1500,
+        "AdsCheck": 0,
+        "AdsNumber": 0
     },
     {
-        "ID": "8",
+        "ID": 7,
         "Name": "Muay Fighter",
-        "RunSpeed": "0",
-        "Price": "0",
-        "AdsCheck": "1",
-        "AdsNumber": "1"
+        "Price": 0,
+        "AdsCheck": 1,
+        "AdsNumber": 1
     },
     {
-        "ID": "9",
+        "ID": 8,
         "Name": "Pirate",
-        "RunSpeed": "0",
-        "Price": "0",
-        "AdsCheck": "1",
-        "AdsNumber": "3"
+        "Price": 0,
+        "AdsCheck": 1,
+        "AdsNumber": 3
     }
 ]

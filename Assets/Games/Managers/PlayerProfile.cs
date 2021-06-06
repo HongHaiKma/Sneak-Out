@@ -36,8 +36,8 @@ public class PlayerProfile
         string ic = "600";
         m_Gold = new BigNumber(ic);
         m_Level = 1;
-        UnlockCharacter(CharacterType.WHITEMAN);
-        SetSelectedCharacter(CharacterType.WHITEMAN);
+        UnlockCharacter(CharacterType.AGENT47);
+        SetSelectedCharacter(CharacterType.AGENT47);
         LoadCharacterData();
     }
 

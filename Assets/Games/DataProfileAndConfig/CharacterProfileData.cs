@@ -61,13 +61,12 @@ public class CharacterDataConfig
 
 public enum CharacterType
 {
-    WHITEMAN = 1,
-    AGENT47 = 2,
-    ASTRONAUS = 3,
-    BLACKNINJA = 4,
-    CAPTAIN = 5,
-    FLASH = 6,
-    GREENNINJA = 7,
-    MUAYFIGHTER = 8,
-    PIRATE = 9,
+    AGENT47 = 1,
+    ASTRONAUS = 2,
+    BLACKNINJA = 3,
+    CAPTAIN = 4,
+    FLASH = 5,
+    GREENNINJA = 6,
+    MUAYFIGHTER = 7,
+    PIRATE = 8,
 }

@@ -48,7 +48,7 @@ public class ProfileManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            SetSelectedCharacter(2);
+            SetSelectedCharacter(1);
             Helper.DebugLog("Selected Character: " + GetSelectedCharacter());
 
             // CharacterDataConfig config = GameData.Instance.GetCharacterDataConfig(2);
