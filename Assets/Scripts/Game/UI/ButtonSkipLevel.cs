@@ -12,22 +12,22 @@ namespace Game
 
             TimeManager.Pause();
 
-            if (!AdsManager.IsVideoReady())
-            {
+            // if (!AdsManager.IsVideoReady())
+            // {
 
-                PopupHelper.CreateMessage(PrefabFactory.PopupMessage, AdsNotAvailable)
-                    .OnClosed += () => { TimeManager.Resume(); };
-            }
-            else
-            {
-                AdsManager.ShowVideo((success) =>
-                {
-                    if (success)
-                        SkipLevel();
+            //     PopupHelper.CreateMessage(PrefabFactory.PopupMessage, AdsNotAvailable)
+            //         .OnClosed += () => { TimeManager.Resume(); };
+            // }
+            // else
+            // {
+            //     AdsManager.ShowVideo((success) =>
+            //     {
+            //         if (success)
+            //             SkipLevel();
 
-                    TimeManager.Resume();
-                });
-            }
+            //         TimeManager.Resume();
+            //     });
+            // }
         }
 
         void SkipLevel()

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Game
 {
+    [DefaultExecutionOrder(-92)]
     public class CameraZoomHandler : MonoBehaviour
     {
         enum State
@@ -37,8 +38,10 @@ namespace Game
         {
             _cameraZoom = GetComponent<CameraZoom>();
 
-            _playerControl.OnMove += PlayerControl_OnMove;
-            _playerControl.OnStop += PlayerControl_OnStop;
+            EventManager.AddListener(GameEvents.LOAD_CHAR, Event_LOAD_CHAR);
+
+            // _playerControl.OnMove += PlayerControl_OnMove;
+            // _playerControl.OnStop += PlayerControl_OnStop;
         }
 
         void Start()
@@ -46,11 +49,30 @@ namespace Game
             Messenger.AddListener<bool>(GameEvent.Game_End, GameEvent_GameEnd);
         }
 
+        private void OnEnable()
+        {
+            // EventManager.AddListener(GameEvents.LOAD_CHAR, Event_LOAD_CHAR);
+        }
+
+        private void OnDisable()
+        {
+            EventManager.RemoveListener(GameEvents.LOAD_CHAR, Event_LOAD_CHAR);
+        }
+
         void OnDestroy()
         {
+            EventManager.RemoveListener(GameEvents.LOAD_CHAR, Event_LOAD_CHAR);
+
             Messenger.RemoveListener<bool>(GameEvent.Game_End, GameEvent_GameEnd);
 
             _tween?.Kill();
+        }
+
+        public void Event_LOAD_CHAR()
+        {
+            _playerControl = PlaySceneManager.Instance.m_Char.m_PlayerControl;
+            _playerControl.OnMove += PlayerControl_OnMove;
+            _playerControl.OnStop += PlayerControl_OnStop;
         }
 
         #endregion

@@ -214,6 +214,7 @@ public class ProfileManager : MonoBehaviour
 
     public static void SetSelectedCharacter(int _id)
     {
+        Helper.DebugLog("111111111111111111111111");
         MyProfile.SetSelectedCharacter(_id);
     }
 

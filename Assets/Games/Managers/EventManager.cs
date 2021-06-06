@@ -79,5 +79,7 @@ public class EventManagerWithParam<T>
 
 public enum GameEvents
 {
-
+    LOAD_CHAR,
+    REMOVE_CHAR,
+    LOAD_CHAR_OUTFIT,
 }

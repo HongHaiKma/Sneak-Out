@@ -10,7 +10,7 @@ namespace Game
         [SerializeField] float _winDelay;
         [SerializeField] float _loseDelay;
 
-        Tween _tween;
+        // Tween _tween;
 
         #region MonoBehaviour
 
@@ -23,7 +23,7 @@ namespace Game
         {
             Messenger.RemoveListener<bool>(GameEvent.Game_End, GameEvent_GameEnd);
 
-            _tween?.Kill();
+            // _tween?.Kill();
         }
 
         #endregion
@@ -54,13 +54,13 @@ namespace Game
             float duration = isWin ? _winDelay : _loseDelay;
             GameObject objPopup = isWin ? PrefabFactory.PopupWin : PrefabFactory.PopupLose;
 
-            _tween = DOVirtual.DelayedCall(isWin ? _winDelay : _loseDelay, () =>
-            {
-                AdsShowHandler.Instance.Show(() =>
-                {
-                    PopupHelper.Create(objPopup);
-                });
-            });
+            // _tween = DOVirtual.DelayedCall(isWin ? _winDelay : _loseDelay, () =>
+            // {
+            // AdsShowHandler.Instance.Show(() =>
+            // {
+            PopupHelper.Create(objPopup);
+            // });
+            // });
         }
     }
 }

@@ -30,6 +30,7 @@ namespace Game
         public void KillEnemy()
         {
             _characterMovement.SetEnabled(false);
+            _playerScript.m_EnemyScript.CacheTransform.LookAt(CacheTransform.position);
             _playerScript.m_EnemyScript.EnemyDown_OnDown();
             CacheTransform.DOMove(_playerScript.Position, 0.25f).OnComplete
             (
