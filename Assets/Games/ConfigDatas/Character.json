@@ -30,9 +30,9 @@
     {
         "ID": 5,
         "Name": "Flash",
-        "Price": 0,
-        "AdsCheck": 1,
-        "AdsNumber": 1
+        "Price": 1500,
+        "AdsCheck": 0,
+        "AdsNumber": 0
     },
     {
         "ID": 6,

@@ -10,4 +10,9 @@ public class PopupCaller : Singletons<PopupCaller>
 
         GUIManager.Instance.ShowUIPopup(popup);
     }
+
+    public static PopupOutfit GetOutfitPopup()
+    {
+        return GUIManager.Instance.GetUICanvasByID(UIID.POPUP_OUTFIT) as PopupOutfit;
+    }
 }

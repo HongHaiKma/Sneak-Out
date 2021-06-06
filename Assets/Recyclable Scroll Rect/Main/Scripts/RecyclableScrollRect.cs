@@ -64,7 +64,7 @@ namespace PolyAndCode.UI
         /// <summary>
         /// Initialization when selfInitalize is true. Assumes that data source is set in controller's Awake.
         /// </summary>
-        private void Initialize()
+        public void Initialize()
         {
             //Contruct the recycling system.
             if (Direction == DirectionType.Vertical)
@@ -130,6 +130,10 @@ namespace PolyAndCode.UI
                                                                onValueChanged.AddListener(OnValueChangedListener)
                                                               ));
                 _prevAnchoredPos = content.anchoredPosition;
+            }
+            else
+            {
+                Helper.DebugLog("Data source is nullllllllllllllll");
             }
         }
 

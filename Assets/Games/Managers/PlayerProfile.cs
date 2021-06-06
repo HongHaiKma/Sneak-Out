@@ -36,7 +36,17 @@ public class PlayerProfile
         string ic = "600";
         m_Gold = new BigNumber(ic);
         m_Level = 1;
+
         UnlockCharacter(CharacterType.AGENT47);
+        UnlockCharacter(CharacterType.ASTRONAUS);
+        UnlockCharacter(CharacterType.BLACKNINJA);
+        UnlockCharacter(CharacterType.CAPTAIN);
+        // UnlockCharacter(CharacterType.FLASH);
+        // UnlockCharacter(CharacterType.GREENNINJA);
+        // UnlockCharacter(CharacterType.MUAYFIGHTER);
+        // UnlockCharacter(CharacterType.PIRATE);
+
+
         SetSelectedCharacter(CharacterType.AGENT47);
         LoadCharacterData();
     }
@@ -158,18 +168,25 @@ public class PlayerProfile
 
     public void UnlockCharacter(CharacterType characterType)
     {
-        // if (GetCharacterProfile(characterType) != null)
+        // if (GetCharacterProfile(characterType) == null)
         // {
         CharacterProfileData newCharacter = new CharacterProfileData();
         newCharacter.Init(characterType);
         newCharacter.Load();
         m_CharacterData.Add(newCharacter);
+
+        Helper.DebugLog("Unlock: " + characterType.ToString());
         // }
     }
 
     public void SetSelectedCharacter(CharacterType characterType)
     {
         m_SelectedCharacter = (int)characterType;
+    }
+
+    public List<CharacterProfileData> GetAllCharacterProfile()
+    {
+        return m_CharacterData;
     }
 
     public CharacterProfileData GetCharacterProfile(int characterType)

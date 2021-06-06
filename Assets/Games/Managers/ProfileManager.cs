@@ -48,17 +48,35 @@ public class ProfileManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            SetSelectedCharacter(1);
-            Helper.DebugLog("Selected Character: " + GetSelectedCharacter());
+            // SetSelectedCharacter(1);
+            // Helper.DebugLog("Selected Character: " + GetSelectedCharacter());
 
-            // CharacterDataConfig config = GameData.Instance.GetCharacterDataConfig(2);
-            // Helper.DebugLog("Name " + config.m_Name);
-            // Helper.DebugLog("Price " + config.m_Price);
+            // // CharacterDataConfig config = GameData.Instance.GetCharacterDataConfig(2);
+            // // Helper.DebugLog("Name " + config.m_Name);
+            // // Helper.DebugLog("Price " + config.m_Price);
+
+            UnlockNewCharacter(CharacterType.FLASH);
+            EventManager.CallEvent(GameEvents.TEST_UPDATE_NEW_OUTFIT);
+
+            // PopupCaller.GetOutfitPopup().m_UICharacterOutfit._recyclableScrollRect.ReloadData();
+            // PopupCaller.GetOutfitPopup().m_UICharacterOutfit._recyclableScrollRect.Initialize();
+            // PopupCaller.GetOutfitPopup().m_UICharacterOutfit.InitCell();
         }
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            Helper.DebugLog("Selected Character: " + GetSelectedCharacter());
+            List<CharacterProfileData> charss = GetAllCharacterProfile();
+
+            for (int i = 0; i < charss.Count; i++)
+            {
+                if (charss[i].m_Cid == CharacterType.FLASH)
+                {
+                    charss.Remove(charss[i]);
+                    break;
+                }
+            }
+
+            EventManager.CallEvent(GameEvents.TEST_UPDATE_NEW_OUTFIT);
         }
     }
 
@@ -214,8 +232,12 @@ public class ProfileManager : MonoBehaviour
 
     public static void SetSelectedCharacter(int _id)
     {
-        Helper.DebugLog("111111111111111111111111");
         MyProfile.SetSelectedCharacter(_id);
+    }
+
+    public List<CharacterProfileData> GetAllCharacterProfile()
+    {
+        return MyProfile.GetAllCharacterProfile();
     }
 
     public static CharacterProfileData GetCharacterProfileData(int _id)

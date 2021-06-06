@@ -25,8 +25,8 @@ public class UICharacterCard : MonoBehaviour, ICell
     public GameObject g_Lock;
 
     //Model
-    private UICharacterCardInfo m_UICharacterCardInfo;
-    private int _cellIndex;
+    public UICharacterCardInfo m_UICharacterCardInfo;
+    // public int _cellIndex;
 
     private void Awake()
     {
@@ -58,6 +58,7 @@ public class UICharacterCard : MonoBehaviour, ICell
         // EventManagerWithParam<int>.AddListener(GameEvents.CLAIM_CHAR, OnUpdateAdsNumber);
         // EventManager.AddListener(GameEvents.UI_CARD_SET_SELECT_CHAR, OnSetSelectedCharacter);
         EventManagerWithParam<int>.AddListener(GameEvents.LOAD_CHAR_OUTFIT, Event_LOAD_CHAR_OUTFIT);
+        // EventManager.AddListener(GameEvents.TEST_UPDATE_NEW_OUTFIT, Event_TEST_UPDATE_NEW_OUTFIT);
     }
 
     public void StopListenToEvent()
@@ -66,12 +67,18 @@ public class UICharacterCard : MonoBehaviour, ICell
         // EventManagerWithParam<int>.RemoveListener(GameEvents.CLAIM_CHAR, OnUpdateAdsNumber);
         // EventManager.RemoveListener(GameEvents.UI_CARD_SET_SELECT_CHAR, OnSetSelectedCharacter);
         EventManagerWithParam<int>.RemoveListener(GameEvents.LOAD_CHAR_OUTFIT, Event_LOAD_CHAR_OUTFIT);
+        // EventManager.RemoveListener(GameEvents.TEST_UPDATE_NEW_OUTFIT, Event_TEST_UPDATE_NEW_OUTFIT);
+    }
+
+    public void Event_TEST_UPDATE_NEW_OUTFIT()
+    {
+        Destroy(gameObject);
     }
 
     // //This is called from the SetCell method in DataSource
     public void ConfigureCell(UICharacterCardInfo _info, int cellIndex)
     {
-        _cellIndex = cellIndex;
+        // _cellIndex = cellIndex;
         m_UICharacterCardInfo = _info;
 
         CharacterProfileData data = ProfileManager.GetCharacterProfileData(_info.m_Id);
@@ -220,6 +227,7 @@ public class UICharacterCard : MonoBehaviour, ICell
     // }
 }
 
+[System.Serializable]
 public class UICharacterCardInfo
 {
     public int m_Id;

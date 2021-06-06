@@ -3,6 +3,8 @@ using TMPro;
 
 public class PopupOutfit : UICanvas
 {
+    public UICharacterOutfit m_UICharacterOutfit;
+
     public static int m_SelectedCharacter;
     public TextMeshProUGUI txt_CharName;
 
@@ -10,6 +12,8 @@ public class PopupOutfit : UICanvas
     public Button btn_Equipped;
     public Button btn_BuyByGold;
     public Button btn_BuyByAds;
+
+    public Image img_Char;
 
     public TextMeshProUGUI txt_BuyByGold;
     public TextMeshProUGUI txt_AdsNumber;
@@ -24,6 +28,7 @@ public class PopupOutfit : UICanvas
     {
         base.OnEnable();
         m_SelectedCharacter = ProfileManager.GetSelectedChar();
+        img_Char.sprite = SpriteManager.Instance.m_CharCards[m_SelectedCharacter - 1];
     }
 
     public override void StartListenToEvents()
@@ -41,10 +46,9 @@ public class PopupOutfit : UICanvas
     public void Event_LOAD_CHAR_OUTFIT(int _id)
     {
         CharacterDataConfig config = GameData.Instance.GetCharacterDataConfig(_id);
-
         txt_CharName.text = config.m_Name;
-
         m_SelectedCharacter = _id;
+        img_Char.sprite = SpriteManager.Instance.m_CharCards[_id - 1];
 
         SetClaimBtnLogic(_id);
     }
