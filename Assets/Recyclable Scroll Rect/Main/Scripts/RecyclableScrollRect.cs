@@ -58,7 +58,7 @@ namespace PolyAndCode.UI
 
             if (!Application.isPlaying) return;
 
-            if (SelfInitialize) Initialize();
+            // if (SelfInitialize) Initialize();
         }
 
         /// <summary>

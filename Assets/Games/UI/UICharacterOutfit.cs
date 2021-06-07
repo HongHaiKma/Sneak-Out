@@ -89,17 +89,17 @@ public class UICharacterOutfit : MonoBehaviour, IRecyclableScrollRectDataSource
         // StartCoroutine(DestroyCard());
     }
 
-    IEnumerator DestroyCard()
-    {
-        foreach (Transform child in tf_Content)
-        {
-            GameObject.Destroy(child.gameObject);
-        }
-        yield return new WaitUntil(() => tf_Content.childCount == 0);
-        _recyclableScrollRect.ReloadData();
-        _recyclableScrollRect.Initialize();
-        InitCell();
-    }
+    // IEnumerator DestroyCard()
+    // {
+    //     foreach (Transform child in tf_Content)
+    //     {
+    //         GameObject.Destroy(child.gameObject);
+    //     }
+    //     yield return new WaitUntil(() => tf_Content.childCount == 0);
+    //     _recyclableScrollRect.ReloadData();
+    //     _recyclableScrollRect.Initialize();
+    //     InitCell();
+    // }
 
     //Initialising _contactList with dummy data 
     public void InitCell()
