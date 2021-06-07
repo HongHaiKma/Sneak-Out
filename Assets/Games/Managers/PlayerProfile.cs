@@ -40,7 +40,7 @@ public class PlayerProfile
         // PlayerPrefs.SetInt(ConfigKeys.rateUs, 1);
 
         // string ic = "6000000";
-        ic_Gold = "6000000";
+        ic_Gold = "6000";
         m_Gold = new BigNumber(ic_Gold);
         m_Level = 1;
 
@@ -181,21 +181,22 @@ public class PlayerProfile
         for (int i = 0; i < m_CharacterData.Count; i++)
         {
             CharacterProfileData cpd = m_CharacterData[i];
+            // Helper.DebugLog("Name: " + cpd.m_Name);
             cpd.Load();
         }
     }
 
     public void UnlockCharacter(CharacterType characterType)
     {
-        // if (GetCharacterProfile(characterType) == null)
-        // {
-        CharacterProfileData newCharacter = new CharacterProfileData();
-        newCharacter.Init(characterType);
-        newCharacter.Load();
-        m_CharacterData.Add(newCharacter);
+        if (GetCharacterProfile(characterType) == null)
+        {
+            CharacterProfileData newCharacter = new CharacterProfileData();
+            newCharacter.Init(characterType);
+            newCharacter.Load();
+            m_CharacterData.Add(newCharacter);
 
-        Helper.DebugLog("Unlock: " + characterType.ToString());
-        // }
+            Helper.DebugLog("Unlock: " + characterType.ToString());
+        }
     }
 
     public void SetSelectedCharacter(CharacterType characterType)

@@ -26,6 +26,7 @@ public class PopupOutfit : UICanvas
 
         GUIManager.Instance.AddClickEvent(btn_Equip, OnEquip);
         GUIManager.Instance.AddClickEvent(btn_BuyByGold, OnBuyByGold);
+        GUIManager.Instance.AddClickEvent(btn_BuyByAds, OnByBuyAdsLogic);
     }
 
     private void Update()
@@ -70,6 +71,7 @@ public class PopupOutfit : UICanvas
 
     public void OnEquip()
     {
+        ProfileManager.UnlockNewCharacter(m_SelectedCharacter);
         ProfileManager.SetSelectedCharacter(m_SelectedCharacter);
         EventManagerWithParam<int>.CallEvent(GameEvents.LOAD_CHAR_OUTFIT, m_SelectedCharacter);
         EventManager.CallEvent(GameEvents.UPDATE_OUTFIT);
@@ -111,6 +113,7 @@ public class PopupOutfit : UICanvas
 
             // AnalysticsManager.LogUnlockCharacter(config.m_Id, config.m_Name);
 
+            ProfileManager.ConsumeGold(config.m_Price);
             OnEquip();
             Helper.DebugLog("Gold: " + ProfileManager.GetGold());
         }
@@ -120,6 +123,44 @@ public class PopupOutfit : UICanvas
             Helper.DebugLog("Not enough golddddddddd");
             Helper.DebugLog("Gold: " + ProfileManager.GetGold());
         }
+    }
+
+    public void OnByBuyAdsLogic()
+    {
+        CharacterProfileData data = ProfileManager.GetCharacterProfileData(m_SelectedCharacter);
+        CharacterDataConfig config = GameData.Instance.GetCharacterDataConfig(m_SelectedCharacter);
+
+        if (data == null)
+        {
+            ProfileManager.UnlockNewCharacter(m_SelectedCharacter);
+            data = new CharacterProfileData();
+            data = ProfileManager.GetCharacterProfileData(m_SelectedCharacter);
+            // data.ClaimByAds(1);
+        }
+        // else
+        // {
+        //     data.ClaimByAds(1);
+        // }
+
+        data.ClaimByAds(1);
+
+        if (ProfileManager.IsOwned(m_SelectedCharacter))
+        {
+            // ProfileManager.SetSelectedCharacter(m_SelectedCharacter);
+            // EventManagerWithParam<int>.CallEvent(GameEvent.EQUIP_CHAR, m_SelectedCharacter);
+
+            OnEquip();
+
+            // SoundManager.Instance.PlaySoundBuySuccess();
+
+            // AnalysticsManager.LogUnlockCharacter(config.m_Id, config.m_Name);
+        }
+
+        EventManager.CallEvent(GameEvents.UPDATE_OUTFIT);
+        Event_LOAD_CHAR_OUTFIT(m_SelectedCharacter);
+
+        // SetOwned(m_SelectedCharacter);
+        // EventManagerWithParam<int>.CallEvent(GameEvent.CLAIM_CHAR, m_SelectedCharacter);
     }
 
     public void SetClaimBtnLogic(int _id)

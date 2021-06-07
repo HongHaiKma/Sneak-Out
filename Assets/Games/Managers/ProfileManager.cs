@@ -78,6 +78,16 @@ public class ProfileManager : MonoBehaviour
 
             EventManager.CallEvent(GameEvents.UPDATE_OUTFIT);
         }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            for (int i = 0; i < MyProfile.m_CharacterData.Count; i++)
+            {
+                CharacterProfileData cpd = MyProfile.m_CharacterData[i];
+                Helper.DebugLog("Name: " + cpd.m_Name);
+                cpd.Load();
+            }
+        }
     }
 
     private void OnEnable()
