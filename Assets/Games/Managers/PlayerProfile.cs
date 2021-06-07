@@ -20,6 +20,12 @@ public class PlayerProfile
         m_Gold = new BigNumber(ic_Gold);
         LoadCharacterData();
 
+        Helper.DebugLog("Local Gold = " + m_Gold);
+
+        // string datas = PlayerPrefs.GetString("Alo");
+
+        // Helper.DebugLog(datas);
+
         // if (GetCharacterProfile(CharacterType.BATMAN) != null)
         // {
         //     Helper.DebugLog("Batman existed!!!");
@@ -33,14 +39,15 @@ public class PlayerProfile
         // PlayerPrefs.SetInt(ConfigKeys.noAds, 0);
         // PlayerPrefs.SetInt(ConfigKeys.rateUs, 1);
 
-        string ic = "600";
-        m_Gold = new BigNumber(ic);
+        // string ic = "6000000";
+        ic_Gold = "6000000";
+        m_Gold = new BigNumber(ic_Gold);
         m_Level = 1;
 
         UnlockCharacter(CharacterType.AGENT47);
         UnlockCharacter(CharacterType.ASTRONAUS);
-        UnlockCharacter(CharacterType.BLACKNINJA);
-        UnlockCharacter(CharacterType.CAPTAIN);
+        // UnlockCharacter(CharacterType.BLACKNINJA);
+        // UnlockCharacter(CharacterType.CAPTAIN);
         // UnlockCharacter(CharacterType.FLASH);
         // UnlockCharacter(CharacterType.GREENNINJA);
         // UnlockCharacter(CharacterType.MUAYFIGHTER);
@@ -49,6 +56,18 @@ public class PlayerProfile
 
         SetSelectedCharacter(CharacterType.AGENT47);
         LoadCharacterData();
+
+        Helper.DebugLog("Local new Gold = " + m_Gold);
+
+        // string datas = PlayerPrefs.GetString("SuperFetch");
+
+        // Helper.DebugLog(datas);
+
+        // string datas = "Alo";
+
+        // PlayerPrefs.SetString(datas, "12345");
+
+        // Helper.DebugLog(PlayerPrefs.GetString(datas));
     }
 
     public void SaveDataToLocal()

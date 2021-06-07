@@ -82,5 +82,5 @@ public enum GameEvents
     LOAD_CHAR,
     REMOVE_CHAR,
     LOAD_CHAR_OUTFIT,
-    TEST_UPDATE_NEW_OUTFIT,
+    UPDATE_OUTFIT,
 }

@@ -1,5 +1,6 @@
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
 
 public class PopupOutfit : UICanvas
 {
@@ -22,13 +23,27 @@ public class PopupOutfit : UICanvas
     {
         m_ID = UIID.POPUP_OUTFIT;
         Init();
+
+        GUIManager.Instance.AddClickEvent(btn_Equip, OnEquip);
+        GUIManager.Instance.AddClickEvent(btn_BuyByGold, OnBuyByGold);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Helper.DebugLog("Gold = " + ProfileManager.GetGold());
+        }
     }
 
     public override void OnEnable()
     {
         base.OnEnable();
         m_SelectedCharacter = ProfileManager.GetSelectedChar();
+
         img_Char.sprite = SpriteManager.Instance.m_CharCards[m_SelectedCharacter - 1];
+
+        Event_LOAD_CHAR_OUTFIT(m_SelectedCharacter);
     }
 
     public override void StartListenToEvents()
@@ -51,6 +66,60 @@ public class PopupOutfit : UICanvas
         img_Char.sprite = SpriteManager.Instance.m_CharCards[_id - 1];
 
         SetClaimBtnLogic(_id);
+    }
+
+    public void OnEquip()
+    {
+        ProfileManager.SetSelectedCharacter(m_SelectedCharacter);
+        EventManagerWithParam<int>.CallEvent(GameEvents.LOAD_CHAR_OUTFIT, m_SelectedCharacter);
+        EventManager.CallEvent(GameEvents.UPDATE_OUTFIT);
+
+        GameObject go = PrefabManager.Instance.SpawnCharacter(new Vector3(0f, 0.83333333f, 0f), m_SelectedCharacter);
+        Character charr = PlaySceneManager.Instance.m_Char;
+        CharacterType type = charr.m_CharacterType;
+        PlaySceneManager.Instance.m_Char = go.GetComponent<Character>();
+        EventManager.CallEvent(GameEvents.LOAD_CHAR);
+        // StartCoroutine(RemoveChar(charr));
+        EventManagerWithParam<CharacterType>.CallEvent(GameEvents.REMOVE_CHAR, type);
+    }
+
+    public void OnBuyByGold() //Remember to Update UICharacterCard when buy succeed
+    {
+        CharacterDataConfig config = GameData.Instance.GetCharacterDataConfig(m_SelectedCharacter);
+
+        if (ProfileManager.IsEnoughGold(config.m_Price))
+        // if (ProfileManager.MyProfile.IsEnoughGold(config.m_Price))
+        {
+            // if (TutorialManager.Instance.CheckTutorial(TutorialType.SHOP_BUYBYGOLD))
+            // {
+            //     TutorialManager.Instance.PassTutorial(TutorialType.SHOP_BUYBYGOLD);
+            //     PopupCaller.GetTutorialPopup().SetupTutShopByBuyGold_UnClickBuyByGoldUI(GetComponent<RectTransform>());
+            //     // PopupCaller.GetTutorialPopup().OnClose();
+            // }
+
+            // ProfileManager.ConsumeGold(config.m_Price);
+            // ProfileManager.UnlockNewCharacter(m_SelectedCharacter);
+            // ProfileManager.SetSelectedCharacter(m_SelectedCharacter);
+            // SetOwned(m_SelectedCharacter);
+            // EventManagerWithParam<int>.CallEvent(GameEvent.CLAIM_CHAR, m_SelectedCharacter);
+            // EventManagerWithParam<int>.CallEvent(GameEvent.EQUIP_CHAR, m_SelectedCharacter);
+
+            // txt_TotalGold.text = ProfileManager.GetGold();
+            // GameManager.Instance.GetPanelInGame().txt_TotalGold.text = ProfileManager.GetGold();
+
+            // SoundManager.Instance.PlaySoundBuySuccess();
+
+            // AnalysticsManager.LogUnlockCharacter(config.m_Id, config.m_Name);
+
+            OnEquip();
+            Helper.DebugLog("Gold: " + ProfileManager.GetGold());
+        }
+        else
+        {
+            // StartCoroutine(IEWarning());
+            Helper.DebugLog("Not enough golddddddddd");
+            Helper.DebugLog("Gold: " + ProfileManager.GetGold());
+        }
     }
 
     public void SetClaimBtnLogic(int _id)

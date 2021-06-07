@@ -56,7 +56,7 @@ public class ProfileManager : MonoBehaviour
             // // Helper.DebugLog("Price " + config.m_Price);
 
             UnlockNewCharacter(CharacterType.FLASH);
-            EventManager.CallEvent(GameEvents.TEST_UPDATE_NEW_OUTFIT);
+            EventManager.CallEvent(GameEvents.UPDATE_OUTFIT);
 
             // PopupCaller.GetOutfitPopup().m_UICharacterOutfit._recyclableScrollRect.ReloadData();
             // PopupCaller.GetOutfitPopup().m_UICharacterOutfit._recyclableScrollRect.Initialize();
@@ -76,7 +76,7 @@ public class ProfileManager : MonoBehaviour
                 }
             }
 
-            EventManager.CallEvent(GameEvents.TEST_UPDATE_NEW_OUTFIT);
+            EventManager.CallEvent(GameEvents.UPDATE_OUTFIT);
         }
     }
 

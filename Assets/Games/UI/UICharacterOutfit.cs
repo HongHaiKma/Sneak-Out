@@ -41,7 +41,7 @@ public class UICharacterOutfit : MonoBehaviour, IRecyclableScrollRectDataSource
         // MiniCharacterStudio.Instance.SpawnMiniCharacterIdle(ProfileManager.GetSelectedCharacter());
         _recyclableScrollRect.DataSource = this;
         // Event_TEST_UPDATE_NEW_OUTFIT();
-        Event_TEST_UPDATE_NEW_OUTFIT();
+        UPDATE_OUTFIT();
         StartListenToEvents();
     }
 
@@ -57,36 +57,23 @@ public class UICharacterOutfit : MonoBehaviour, IRecyclableScrollRectDataSource
 
     public void StartListenToEvents()
     {
-        EventManager.AddListener(GameEvents.TEST_UPDATE_NEW_OUTFIT, Event_TEST_UPDATE_NEW_OUTFIT);
+        EventManager.AddListener(GameEvents.UPDATE_OUTFIT, UPDATE_OUTFIT);
     }
 
     public void StopListenToEvents()
     {
-        EventManager.RemoveListener(GameEvents.TEST_UPDATE_NEW_OUTFIT, Event_TEST_UPDATE_NEW_OUTFIT);
+        EventManager.RemoveListener(GameEvents.UPDATE_OUTFIT, UPDATE_OUTFIT);
     }
 
-    public void Event_TEST_UPDATE_NEW_OUTFIT()
+    public void UPDATE_OUTFIT()
     {
-        // int childs = tf_Content.childCount;
-        // Helper.DebugLog("Childs: " + childs);
-        // for (int i = 0; i < childs - 1; i++)
-        // {
-        //     Destroy(transform.GetChild(i).gameObject);
-        // }
-
-
         foreach (Transform child in tf_Content)
         {
             GameObject.Destroy(child.gameObject);
         }
 
-
-
-        // _recyclableScrollRect.ReloadData();
         _recyclableScrollRect.Initialize();
         InitCell();
-
-        // StartCoroutine(DestroyCard());
     }
 
     // IEnumerator DestroyCard()
@@ -110,36 +97,36 @@ public class UICharacterOutfit : MonoBehaviour, IRecyclableScrollRectDataSource
         // int len = characterDataConfig.Count;
         // // _dataLength = len;
 
-        // Dictionary<int, CharacterDataConfig> charConfig = GameData.Instance.GetCharacterDataConfig();
-        // int len = charConfig.Count;
-
-        // for (int i = 0; i < len; i++)
-        // {
-        //     UICharacterCardInfo obj = new UICharacterCardInfo();
-        //     obj.m_Id = charConfig[i + 1].m_Id;
-        //     obj.m_Name = charConfig[i + 1].m_Name;
-        //     obj.m_Price = charConfig[i + 1].m_Price.ToString();
-        //     obj.m_AdsNumber = charConfig[i + 1].m_AdsNumber;
-        //     _contactList.Add(obj);
-        // }
-
-        List<CharacterProfileData> charConfig = ProfileManager.Instance.GetAllCharacterProfile();
+        Dictionary<int, CharacterDataConfig> charConfig = GameData.Instance.GetCharacterDataConfig();
         int len = charConfig.Count;
 
         for (int i = 0; i < len; i++)
         {
-            if (ProfileManager.IsOwned((int)charConfig[i].m_Cid))
-            {
-                UICharacterCardInfo obj = new UICharacterCardInfo();
-                obj.m_Id = (int)charConfig[i].m_Cid;
-                obj.m_Name = charConfig[i].m_Name;
-                // obj.m_Price = charConfig[i + 1].m_Price.ToString();
-                obj.m_AdsNumber = charConfig[i].m_AdsNumber;
-                _contactList.Add(obj);
-
-                Helper.DebugLog("Data: " + i);
-            }
+            UICharacterCardInfo obj = new UICharacterCardInfo();
+            obj.m_Id = charConfig[i + 1].m_Id;
+            obj.m_Name = charConfig[i + 1].m_Name;
+            obj.m_Price = charConfig[i + 1].m_Price.ToString();
+            obj.m_AdsNumber = charConfig[i + 1].m_AdsNumber;
+            _contactList.Add(obj);
         }
+
+        // List<CharacterProfileData> charConfig = ProfileManager.Instance.GetAllCharacterProfile();
+        // int len = charConfig.Count;
+
+        // for (int i = 0; i < len; i++)
+        // {
+        //     if (ProfileManager.IsOwned((int)charConfig[i].m_Cid))
+        //     {
+        //         UICharacterCardInfo obj = new UICharacterCardInfo();
+        //         obj.m_Id = (int)charConfig[i].m_Cid;
+        //         obj.m_Name = charConfig[i].m_Name;
+        //         // obj.m_Price = charConfig[i + 1].m_Price.ToString();
+        //         obj.m_AdsNumber = charConfig[i].m_AdsNumber;
+        //         _contactList.Add(obj);
+
+        //         Helper.DebugLog("Data: " + i);
+        //     }
+        // }
     }
 
     #region DATA-SOURCE
