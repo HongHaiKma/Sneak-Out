@@ -1,7 +1,7 @@
 using DG.Tweening;
 using PFramework;
 using UnityEngine;
-
+using System.Collections;
 namespace Game
 {
     public class EndGameHandler : MonoBehaviour
@@ -46,10 +46,10 @@ namespace Game
                 Taptic.Taptic.Vibrate();
             }
 
-            ShowEndGamePopup(isWin);
+            StartCoroutine(ShowEndGamePopup(isWin));
         }
 
-        void ShowEndGamePopup(bool isWin)
+        IEnumerator ShowEndGamePopup(bool isWin)
         {
             float duration = isWin ? _winDelay : _loseDelay;
             GameObject objPopup = isWin ? PrefabFactory.PopupWin : PrefabFactory.PopupLose;
@@ -58,6 +58,25 @@ namespace Game
             // {
             // AdsShowHandler.Instance.Show(() =>
             // {
+
+            GameObject chest = FindObjectOfType<ChestScript>().gameObject;
+
+            Vector3 gap = chest.transform.position + new Vector3(15.14f, 4.59f, 0.51f);
+
+            GameObject plane = PrefabManager.Instance.SpawnPlane(gap);
+
+            plane.transform.DOMove(new Vector3(chest.transform.position.x, plane.transform.position.y, plane.transform.position.z), 2f).OnComplete(
+                () =>
+                {
+                    Destroy(chest);
+                    plane.transform.DOMove(new Vector3(plane.transform.position.y - 50f, plane.transform.position.y, plane.transform.position.z), 2f);
+                }
+            );
+
+            // plane.transform.DOMove(new Vector3(plane.transform.position.y - 5f, plane.transform.position.y, plane.transform.position.z), 2f);
+
+            yield return new WaitForSeconds(4f);
+
             PopupHelper.Create(objPopup);
             // });
             // });

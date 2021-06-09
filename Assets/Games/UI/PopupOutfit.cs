@@ -26,7 +26,7 @@ public class PopupOutfit : UICanvas
 
         GUIManager.Instance.AddClickEvent(btn_Equip, OnEquip);
         GUIManager.Instance.AddClickEvent(btn_BuyByGold, OnBuyByGold);
-        GUIManager.Instance.AddClickEvent(btn_BuyByAds, OnByBuyAdsLogic);
+        GUIManager.Instance.AddClickEvent(btn_BuyByAds, OnBuyByAds);
     }
 
     private void Update()
@@ -51,12 +51,14 @@ public class PopupOutfit : UICanvas
     {
         base.StartListenToEvents();
         EventManagerWithParam<int>.AddListener(GameEvents.LOAD_CHAR_OUTFIT, Event_LOAD_CHAR_OUTFIT);
+        EventManager.AddListener(GameEvents.ADS_CHARACTER_LOGIC, OnByBuyAdsLogic);
     }
 
     public override void StopListenToEvents()
     {
         base.StartListenToEvents();
         EventManagerWithParam<int>.RemoveListener(GameEvents.LOAD_CHAR_OUTFIT, Event_LOAD_CHAR_OUTFIT);
+        EventManager.RemoveListener(GameEvents.ADS_CHARACTER_LOGIC, OnByBuyAdsLogic);
     }
 
     public void Event_LOAD_CHAR_OUTFIT(int _id)
@@ -123,6 +125,12 @@ public class PopupOutfit : UICanvas
             Helper.DebugLog("Not enough golddddddddd");
             Helper.DebugLog("Gold: " + ProfileManager.GetGold());
         }
+    }
+
+    public void OnBuyByAds() //Remember to Update UICharacterCard when buy succeed
+    {
+        AdsManagers.Instance.WatchRewardVideo(RewardType.CHARACTER);
+        // OnByBuyAdsLogic();
     }
 
     public void OnByBuyAdsLogic()

@@ -12,6 +12,11 @@ public class PanelInGame : MonoBehaviour
         GUIManager.Instance.AddClickEvent(btn_Outfit, OpenOutfit);
     }
 
+    private void OnEnable()
+    {
+        btn_Outfit.gameObject.SetActive(true);
+    }
+
     public void OpenOutfit()
     {
         PopupCaller.OpenOutfitPopup();

@@ -83,4 +83,5 @@ public enum GameEvents
     REMOVE_CHAR,
     LOAD_CHAR_OUTFIT,
     UPDATE_OUTFIT,
+    ADS_CHARACTER_LOGIC,
 }

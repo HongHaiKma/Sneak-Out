@@ -7,6 +7,8 @@ public class PrefabManager : Singletons<PrefabManager>
 {
     public GameObject[] m_CharPrefabs;
 
+    public GameObject m_Plane;
+
     private void Awake()
     {
         InitPrefab();
@@ -33,6 +35,10 @@ public class PrefabManager : Singletons<PrefabManager>
         return Instantiate(m_CharPrefabs[_index - 1], _pos, Quaternion.identity);
     }
 
+    public GameObject SpawnPlane(Vector3 _pos)
+    {
+        return Instantiate(m_Plane, _pos, Quaternion.identity);
+    }
 
     public void CreatePool(string name, GameObject prefab, int amount)
     {

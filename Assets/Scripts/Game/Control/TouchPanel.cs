@@ -20,6 +20,9 @@ namespace Game
             _isDragging = true;
 
             OnBeginDrag?.Invoke(eventData);
+
+            PanelInGame aaa = FindObjectOfType<PanelInGame>().GetComponent<PanelInGame>();
+            aaa.btn_Outfit.gameObject.SetActive(false);
         }
 
         void IDragHandler.OnDrag(PointerEventData eventData)
