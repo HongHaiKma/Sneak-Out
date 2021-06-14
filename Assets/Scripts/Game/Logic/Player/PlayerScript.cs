@@ -167,6 +167,8 @@ namespace Game
                 {
                     _characterMovement.SetEnabled(true);
                     _stateMachine.CurrentState = State.Normal;
+                    ProfileManager.AddGold(10);
+                    EventManager.CallEvent(GameEvents.UPDATE_GOLD);
                 }
             );
         }

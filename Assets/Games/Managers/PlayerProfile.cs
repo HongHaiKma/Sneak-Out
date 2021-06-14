@@ -40,12 +40,12 @@ public class PlayerProfile
         // PlayerPrefs.SetInt(ConfigKeys.rateUs, 1);
 
         // string ic = "6000000";
-        ic_Gold = "6000";
+        ic_Gold = "0";
         m_Gold = new BigNumber(ic_Gold);
         m_Level = 1;
 
         UnlockCharacter(CharacterType.AGENT47);
-        UnlockCharacter(CharacterType.ASTRONAUS);
+        // UnlockCharacter(CharacterType.ASTRONAUS);
         // UnlockCharacter(CharacterType.BLACKNINJA);
         // UnlockCharacter(CharacterType.CAPTAIN);
         // UnlockCharacter(CharacterType.FLASH);

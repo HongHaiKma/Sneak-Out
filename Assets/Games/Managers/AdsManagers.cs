@@ -43,35 +43,35 @@ public class AdsManagers : Singletons<AdsManagers>
         //         AppLovin.Initialize();
         // #else
         Helper.DebugLog("AdsManager Awakeeeeeeeeeeeeeee");
-        // MobileAds.Initialize((initStatus) =>
-        // {
-        //     Dictionary<string, AdapterStatus> map = initStatus.getAdapterStatusMap();
-        //     foreach (KeyValuePair<string, AdapterStatus> keyValuePair in map)
-        //     {
-        //         string className = keyValuePair.Key;
-        //         AdapterStatus status = keyValuePair.Value;
-        //         switch (status.InitializationState)
-        //         {
-        //             case AdapterState.NotReady:
-        //                 // The adapter initialization did not complete.
-        //                 MonoBehaviour.print("Adapter: " + className + " not ready.");
-        //                 break;
-        //             case AdapterState.Ready:
-        //                 // The adapter was successfully initialized.
-        //                 MonoBehaviour.print("Adapter: " + className + " is initialized.");
-        //                 break;
-        //         }
-        //     }
-        //     //MediationTestSuite.OnMediationTestSuiteDismissed += this.HandleMediationTestSuiteDismissed;
-        //     this.RequestBanner();
-        //     this.RequestInter();
-        //     this.RequestRewardVideo();
-        //     Helper.DebugLog("Mobileds Init");
-        // });
+        MobileAds.Initialize((initStatus) =>
+        {
+            Dictionary<string, AdapterStatus> map = initStatus.getAdapterStatusMap();
+            foreach (KeyValuePair<string, AdapterStatus> keyValuePair in map)
+            {
+                string className = keyValuePair.Key;
+                AdapterStatus status = keyValuePair.Value;
+                switch (status.InitializationState)
+                {
+                    case AdapterState.NotReady:
+                        // The adapter initialization did not complete.
+                        MonoBehaviour.print("Adapter: " + className + " not ready.");
+                        break;
+                    case AdapterState.Ready:
+                        // The adapter was successfully initialized.
+                        MonoBehaviour.print("Adapter: " + className + " is initialized.");
+                        break;
+                }
+            }
+            //MediationTestSuite.OnMediationTestSuiteDismissed += this.HandleMediationTestSuiteDismissed;
+            // this.RequestBanner();
+            this.RequestInter();
+            this.RequestRewardVideo();
+            Helper.DebugLog("Mobileds Init");
+        });
 
-        this.RequestBanner();
-        this.RequestInter();
-        this.RequestRewardVideo();
+        // this.RequestBanner();
+        // this.RequestInter();
+        // this.RequestRewardVideo();
         // #endif
 
         // this.RequestBanner();
@@ -401,17 +401,26 @@ public class AdsManagers : Singletons<AdsManagers>
             case RewardType.CHARACTER:
                 EventManager.CallEvent(GameEvents.ADS_CHARACTER_LOGIC);
                 break;
-                // case RewardType.CHARACTER_2:
-                //     m_WatchInter = false;
-                //     EventManager.CallEvent(GameEvents.ADS_CHARACTER_2_LOGIC);
-                //     break;
-                // case RewardType.GOLD_1:
-                //     EventManager.CallEvent(GameEvents.ADS_GOLD_1_LOGIC);
-                //     break;
-                // case RewardType.GOLD_2:
-                //     m_WatchInter = false;
-                //     EventManager.CallEvent(GameEvents.ADS_GOLD_2_LOGIC);
-                //     break;
+            // case RewardType.CHARACTER_2:
+            //     m_WatchInter = false;
+            //     EventManager.CallEvent(GameEvents.ADS_CHARACTER_2_LOGIC);
+            //     break;
+            // case RewardType.GOLD_1:
+            //     EventManager.CallEvent(GameEvents.ADS_GOLD_1_LOGIC);
+            //     break;
+            // case RewardType.GOLD_2:
+            //     m_WatchInter = false;
+            //     EventManager.CallEvent(GameEvents.ADS_GOLD_2_LOGIC);
+            //     break;
+            case RewardType.SKIP_LEVEL:
+                m_WatchInter = false;
+                EventManager.CallEvent(GameEvents.SKIP_LEVEL);
+                break;
+            case RewardType.ADS_GOLD:
+                m_WatchInter = false;
+                ProfileManager.AddGold(250);
+                EventManager.CallEvent(GameEvents.UPDATE_GOLD);
+                break;
         }
     }
 
@@ -422,7 +431,7 @@ public class AdsManagers : Singletons<AdsManagers>
 
     IEnumerator IEWatchRewardVideo(RewardType _rewardType)
     {
-        LoadRewardVideo();
+        // LoadRewardVideo();
 
         m_RewardType = _rewardType;
         openRwdAds = true;
@@ -459,4 +468,6 @@ public enum RewardType
     CHARACTER_2,
     GOLD_1,
     GOLD_2,
+    SKIP_LEVEL,
+    ADS_GOLD,
 }

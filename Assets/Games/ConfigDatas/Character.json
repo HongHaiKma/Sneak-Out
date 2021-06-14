@@ -2,37 +2,37 @@
     {
         "ID": 1,
         "Name": "Agent 47",
-        "Price": 500,
+        "Price": 0,
         "AdsCheck": 0,
         "AdsNumber": 0
     },
     {
         "ID": 2,
         "Name": "Astronaus",
-        "Price": 500,
+        "Price": 2500,
         "AdsCheck": 0,
         "AdsNumber": 0
     },
     {
         "ID": 3,
         "Name": "Black Ninja",
-        "Price": 1000,
+        "Price": 1500,
         "AdsCheck": 0,
         "AdsNumber": 0
     },
     {
         "ID": 4,
         "Name": "Captain",
-        "Price": 1500,
-        "AdsCheck": 0,
-        "AdsNumber": 0
+        "Price": 0,
+        "AdsCheck": 1,
+        "AdsNumber": 3
     },
     {
         "ID": 5,
         "Name": "Flash",
-        "Price": 1500,
-        "AdsCheck": 0,
-        "AdsNumber": 0
+        "Price": 0,
+        "AdsCheck": 1,
+        "AdsNumber": 3
     },
     {
         "ID": 6,
@@ -44,14 +44,14 @@
     {
         "ID": 7,
         "Name": "Muay Fighter",
-        "Price": 0,
+        "Price": 2500,
         "AdsCheck": 1,
         "AdsNumber": 1
     },
     {
         "ID": 8,
         "Name": "Pirate",
-        "Price": 0,
+        "Price": 1500,
         "AdsCheck": 1,
         "AdsNumber": 3
     }

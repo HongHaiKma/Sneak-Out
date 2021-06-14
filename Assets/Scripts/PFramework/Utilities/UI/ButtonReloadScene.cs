@@ -6,6 +6,8 @@
         {
             base.Button_OnClicked();
 
+
+
             SceneTransitionManager.ReloadScene();
         }
     }

@@ -84,4 +84,7 @@ public enum GameEvents
     LOAD_CHAR_OUTFIT,
     UPDATE_OUTFIT,
     ADS_CHARACTER_LOGIC,
+    SKIP_LEVEL,
+    UPDATE_GOLD,
+    ADS_GOLD,
 }

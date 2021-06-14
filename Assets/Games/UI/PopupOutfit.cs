@@ -13,11 +13,13 @@ public class PopupOutfit : UICanvas
     public Button btn_Equipped;
     public Button btn_BuyByGold;
     public Button btn_BuyByAds;
+    public Button btn_AdsGold;
 
     public Image img_Char;
 
     public TextMeshProUGUI txt_BuyByGold;
     public TextMeshProUGUI txt_AdsNumber;
+    public TextMeshProUGUI txt_Gold;
 
     private void Awake()
     {
@@ -27,6 +29,7 @@ public class PopupOutfit : UICanvas
         GUIManager.Instance.AddClickEvent(btn_Equip, OnEquip);
         GUIManager.Instance.AddClickEvent(btn_BuyByGold, OnBuyByGold);
         GUIManager.Instance.AddClickEvent(btn_BuyByAds, OnBuyByAds);
+        GUIManager.Instance.AddClickEvent(btn_AdsGold, OnAdsGold);
     }
 
     private void Update()
@@ -45,6 +48,7 @@ public class PopupOutfit : UICanvas
         img_Char.sprite = SpriteManager.Instance.m_CharCards[m_SelectedCharacter - 1];
 
         Event_LOAD_CHAR_OUTFIT(m_SelectedCharacter);
+        Event_UPDATE_GOLD();
     }
 
     public override void StartListenToEvents()
@@ -52,6 +56,7 @@ public class PopupOutfit : UICanvas
         base.StartListenToEvents();
         EventManagerWithParam<int>.AddListener(GameEvents.LOAD_CHAR_OUTFIT, Event_LOAD_CHAR_OUTFIT);
         EventManager.AddListener(GameEvents.ADS_CHARACTER_LOGIC, OnByBuyAdsLogic);
+        EventManager.AddListener(GameEvents.UPDATE_GOLD, Event_UPDATE_GOLD);
     }
 
     public override void StopListenToEvents()
@@ -59,6 +64,7 @@ public class PopupOutfit : UICanvas
         base.StartListenToEvents();
         EventManagerWithParam<int>.RemoveListener(GameEvents.LOAD_CHAR_OUTFIT, Event_LOAD_CHAR_OUTFIT);
         EventManager.RemoveListener(GameEvents.ADS_CHARACTER_LOGIC, OnByBuyAdsLogic);
+        EventManager.RemoveListener(GameEvents.UPDATE_GOLD, Event_UPDATE_GOLD);
     }
 
     public void Event_LOAD_CHAR_OUTFIT(int _id)
@@ -116,6 +122,7 @@ public class PopupOutfit : UICanvas
             // AnalysticsManager.LogUnlockCharacter(config.m_Id, config.m_Name);
 
             ProfileManager.ConsumeGold(config.m_Price);
+            EventManager.CallEvent(GameEvents.UPDATE_GOLD);
             OnEquip();
             Helper.DebugLog("Gold: " + ProfileManager.GetGold());
         }
@@ -169,6 +176,16 @@ public class PopupOutfit : UICanvas
 
         // SetOwned(m_SelectedCharacter);
         // EventManagerWithParam<int>.CallEvent(GameEvent.CLAIM_CHAR, m_SelectedCharacter);
+    }
+
+    public void Event_UPDATE_GOLD()
+    {
+        txt_Gold.text = ProfileManager.GetGold();
+    }
+
+    public void OnAdsGold()
+    {
+        AdsManagers.Instance.WatchRewardVideo(RewardType.ADS_GOLD);
     }
 
     public void SetClaimBtnLogic(int _id)

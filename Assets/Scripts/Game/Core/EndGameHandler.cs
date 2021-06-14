@@ -32,6 +32,9 @@ namespace Game
         {
             if (isWin)
             {
+                ProfileManager.AddGold(50 + DataMain.LevelIndex * 25);
+                EventManager.CallEvent(GameEvents.UPDATE_GOLD);
+
                 DataMain.LevelIndex++;
 
                 DataMain.LevelMax = Mathf.Max(DataMain.LevelMax, DataMain.LevelIndex);
